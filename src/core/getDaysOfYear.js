@@ -7,7 +7,7 @@ function getDaysOfYear(year) {
     const dayOfWeek = date.toLocaleString('en', { weekday: 'short' })
     const day = date.getDate()
     const month = date.getMonth() + 1
-    daysOfYear.push({ id: day + '/' + month, day, month, year, dayOfWeek })
+    daysOfYear.push({ id: month + '/' + day, day, month, year, dayOfWeek })
   }
 
   // SORT WEEKDAYS

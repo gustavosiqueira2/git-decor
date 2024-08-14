@@ -32,7 +32,6 @@ const createTable = (year) => {
     fullString += weekDayString(weekDays[i][0], weekDays[i][1], i % 2 === 1)
 
     const actualWeekDay = daysOfYear[i]
-
     for (let day = 0; day < actualWeekDay.length; day++) {
       const actualDay = actualWeekDay[day]
       if (actualDay) {

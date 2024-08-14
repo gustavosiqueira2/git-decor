@@ -1,15 +1,13 @@
 let currentYear = 2024
 
-setTimeout(() => setYear(currentYear), 1)
+setTimeout(function () {
+  setYear(currentYear)
+}, 1)
 
 function setYear(year) {
   currentYear = year
   createTable(year)
   document.getElementById('year_label').innerHTML = year
-}
-
-function clearDraw() {
-  clearTable()
 }
 
 function changeTableYear(year) {
@@ -20,18 +18,22 @@ function changeTableYear(year) {
   createTable(year)
 }
 
+function selectDraw() {
+  document.getElementById('load_draw_input').click()
+}
+
+async function loadDraw() {
+  const data = await readDraw()
+
+  renderDraw(data)
+}
+
 function saveDraw() {
-  if (daysToDraw.size <= 0) {
-    return
-  }
-
-  const daysMapped = []
-
-  for (const day of daysToDraw.values()) {
-    daysMapped.push(day)
-  }
+  const daysMapped = mapDaysToDraw()
 
   downloadDraw(currentYear, daysMapped)
+}
 
-  clearDraw()
+function clearDraw() {
+  clearTable()
 }

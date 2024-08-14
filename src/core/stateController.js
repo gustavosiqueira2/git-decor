@@ -1,6 +1,6 @@
 let leftMouseDown = 0
 let rightMouseDown = 0
-document.onmousedown = (e) => {
+document.onmousedown = function (e) {
   e.preventDefault()
   if (e.button === 0) {
     ++leftMouseDown
@@ -9,13 +9,13 @@ document.onmousedown = (e) => {
     ++rightMouseDown
   }
 }
-document.onmouseup = (e) => {
+document.onmouseup = function (e) {
   e.preventDefault()
   if (e.button === 0) {
-    --leftMouseDown
+    leftMouseDown = 0
   }
   if (e.button === 2) {
-    --rightMouseDown
+    rightMouseDown = 0
   }
 }
 
@@ -45,7 +45,7 @@ function clearTable() {
 
 function addEvents(id) {
   let day = document.getElementById(id)
-  day.addEventListener('mouseover', () => {
+  day.addEventListener('mouseover', function () {
     if (!!leftMouseDown) {
       changeState(day, true)
     } else if (!!rightMouseDown) {
@@ -53,7 +53,7 @@ function addEvents(id) {
     }
   })
 
-  day.addEventListener('mousedown', (e) => {
+  day.addEventListener('mousedown', function (e) {
     if (e.button === 0) {
       changeState(day, true)
     } else if (e.button === 2) {

@@ -1,27 +1,44 @@
 const FILE_NAME = 'draw'
 
-const drawHTML = (name) => `
-<div class="draw">
-    <span>${name}</span>
-    <button onclick="renderDraw('draws/teste1 copy.txt')">load</button>
-</div>
-`
+async function readDraw() {
+  const drawInput = document.getElementById('load_draw_input')
 
-function loadDraws() {
-  const fi = document.getElementById('file_input')
-  const files = Array.from(fi.files)
-  console.log(files)
+  const data = JSON.parse(await drawInput.files[0].text())
 
-  const listDraws = document.getElementById('list-draws')
-  let draws = ''
-
-  if (files && files.length > 0) {
-    files.forEach((f) => (draws += drawHTML(f.name)))
-    listDraws.innerHTML = draws
+  if (data.days && data.year) {
+    return data
   }
+
+  alert("FILE DON'T HAVE THE CORRECT DATA TYPE")
 }
 
-function renderDraw() {}
+function renderDraw({ year, days }) {
+  changeTableYear(year)
+
+  days
+    .map(function (day) {
+      return day.split('/').slice(0, -1).join('/')
+    })
+    .forEach(function (day) {
+      const dayInput = document.getElementById(day)
+
+      changeState(dayInput, true)
+    })
+}
+
+function mapDaysToDraw() {
+  if (daysToDraw.size <= 0) {
+    return
+  }
+
+  const daysMapped = []
+
+  for (const day of daysToDraw.values()) {
+    daysMapped.push(day)
+  }
+
+  return daysMapped
+}
 
 function downloadDraw(yearOfDraw, daysToSave) {
   const data = {
@@ -42,6 +59,4 @@ function downloadDraw(yearOfDraw, daysToSave) {
     elem.click()
     document.body.removeChild(elem)
   }
-
-  console.log(data)
 }

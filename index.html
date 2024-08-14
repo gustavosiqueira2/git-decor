@@ -8,8 +8,8 @@
     <!-- FILES -->
     <link rel="stylesheet" href="./src/styles.css" />
     <script src="./src/core/getDaysOfYear.js"></script>
-    <script src="./src/core/changeState.js"></script>
-    <script src="./src/core/createTable.js"></script>
+    <script src="./src/core/stateController.js"></script>
+    <script src="./src/core/tableController.js"></script>
     <script src="./src/core/drawController.js"></script>
     <script src="./src/core/core.js"></script>
     <!-- ROBOTO -->
@@ -195,6 +195,15 @@
           </div>
 
           <div class="description-buttons">
+            <span> you can load pre-made draws! </span>
+            <button class="button-outline" onclick="selectDraw()">load</button>
+            <input
+              id="load_draw_input"
+              type="file"
+              accept=".txt"
+              onchange="loadDraw()"
+              style="display: none"
+            />
             <button class="button-outline" onclick="clearDraw()">clear</button>
             <button class="button" onclick="saveDraw()">download</button>
           </div>
@@ -213,3 +222,4 @@
     </div>
   </body>
 </html>
+z'

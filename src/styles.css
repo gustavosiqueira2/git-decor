@@ -222,7 +222,15 @@ tr {
 
 .description-buttons {
   display: flex;
+  align-items: center;
   gap: 8px;
+
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.description-buttons button {
+  height: 32px;
 }
 
 .description {
